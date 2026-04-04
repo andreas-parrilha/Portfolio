@@ -330,7 +330,7 @@
       color: var(--muted);
       line-height: 1.85;
       max-width: 680px;
-      white-space: pre-line; /* allows \n line breaks in descriptions */
+      white-space: pre-line;
     }
 
     .pp-tools-label {
@@ -365,6 +365,22 @@
     }
 
     .pp-media video { background: #000; }
+
+    /* Google Slides embed */
+    .pp-slides-wrap {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .pp-slides-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
 
     /* ── Animations ── */
     @keyframes fadeUp {
@@ -443,22 +459,25 @@
       <!--
         HOW TO ADD A PROJECT:
         1. Copy a card block below
-        2. data-category must be lowercase and match a filter button: "rocketry", "mechanical", "software"
+        2. data-category must be lowercase: "rocketry", "mechanical", or "software"
         3. Fill in openProject():
              - Title
-             - Description (use \' for apostrophes, \n for paragraph breaks)
+             - Description (use \' for apostrophes, \n\n for paragraph breaks)
              - Thumbnail image path
-             - Media array: images/videos shown on the full page, in order
+             - Media array: images/videos stacked on full page. For a Google Slides
+               embed, use the special prefix "slides:" before the URL, e.g.:
+               'slides:https://docs.google.com/presentation/d/e/YOUR_ID/pubembed?...'
              - Year / date range
              - Tools (comma-separated)
              - Tags array
-        4. Update card-title, card-desc, card-year, tag spans to match
+        4. Update card-title, card-desc, card-year, tag spans
       -->
-    <!-- Latest Project: Aurora -->
+
+      <!-- AURORA -->
       <div class="card"
            data-category="rocketry"
            onclick="openProject(
-             'IREC: Aurora',
+             'IREC 2026: Aurora',
              'As the Chief Engineer of the Flight Systems team for the 2025-2026 season, I am in charge of the design, facilitating construction and integration, and making sure the rocket launches. I chose this design to prepare the overall lacking manufacturing performance of our team so they can be ready to make a two stage rocket the year after.\n\nNot to say this one is simple — it has a custom airbrakes system, custom flight computers, a 3U cubesat, as well as canard fins. It is perfectly designed to reach its target altitude with the use of airbrakes, no more no less. We have test launched this without the airbrakes and it performed better than expected.\n\nWhile I still spent quite a bit of time helping the main structures team build the rocket, I also had to learn about all the other systems and make sure they work together and integrate cleanly into the final rocket.',
              'images/AuroraThumb.jpg',
              ['images/AuroraThumb.jpg'],
@@ -471,7 +490,7 @@
         </div>
         <div class="card-body">
           <div class="card-meta">
-            <div class="card-title">IREC: Aurora</div>
+            <div class="card-title">IREC 2026: Aurora</div>
             <div class="card-year">2026</div>
           </div>
           <div class="card-desc">2026 IREC competition rocket with airbrakes, canards, and a 3U cubesat payload.</div>
@@ -480,7 +499,8 @@
           </div>
         </div>
       </div>
-      <!-- PROJECT 3: Aquilla -->
+
+      <!-- AQUILLA -->
       <div class="card"
            data-category="rocketry"
            onclick="openProject(
@@ -507,41 +527,42 @@
         </div>
       </div>
 
-      <!-- Class: Synthetic Aperture Radar -->
+      <!-- SAR -->
       <div class="card"
            data-category="software"
            onclick="openProject(
              'Synthetic Aperture Radar Image Processing',
-             'In this class we explored Synthetic Aperture Radar processing, using publicly available data to see snapshots of differnt land areas using the SAR techniques. I learned a lot about how radars work in general, and the practical use of SAR from topographic mapping, using the phase data to see deformations over time and more conceptual concepts like finding the health of soil. This process involves taking encoded information from a binary files and using discrete fourier transforms to get our final image.',
-             'images/SARthumb.tif',
-             ['images/SAR1.tif', 'images/SAR2.tif', 'images/SAR3.tif'],
+             'In this class we explored Synthetic Aperture Radar processing, using publicly available data to see snapshots of different land areas using SAR techniques. I learned a lot about how radars work in general, and the practical uses of SAR — from topographic mapping, to using phase data to detect ground deformations at the centimeter level, to assessing soil health.\n\nThis process involves decoding raw binary data and applying discrete Fourier transforms to reconstruct the final image.',
+             'images/SARthumb.jpg',
+             ['images/SAR1.jpg', 'images/SAR2.jpg', 'images/SAR3.jpg'],
              'Fall 2025',
-             'Matlab, Python',
-             ['Software']
+             'MATLAB, Python',
+             ['Software', 'Signal Processing']
            )">
         <div class="card-thumb-wrap">
-          <img class="card-thumb" src="images/SARthumb.tif" alt="SAR">
+          <img class="card-thumb" src="images/SARthumb.jpg" alt="SAR">
         </div>
         <div class="card-body">
           <div class="card-meta">
-            <div class="card-title">Synthetic Aperture Radar Image Processing</div>
+            <div class="card-title">Synthetic Aperture Radar</div>
             <div class="card-year">2025</div>
           </div>
-          <div class="card-desc">Using satellites to find ground movement in the centimeter level.</div>
+          <div class="card-desc">Using satellites to detect ground deformation at the centimeter level.</div>
           <div class="card-tags">
             <span class="tag">Software</span>
+            <span class="tag">Signal Processing</span>
           </div>
         </div>
       </div>
-      
-      <!-- PROJECT 2: Olympus -->
+
+      <!-- OLYMPUS -->
       <div class="card"
            data-category="rocketry"
            onclick="openProject(
              'IREC 2025: Olympus',
-             'Olympus was the competition rocket for the 2024-2025 season at the International Rocketry Engineering Competition. As the Flight Hardware Lead at the time, I was responsible for the construction of the rocket. Throughout my time as lead I devoted my time to teaching everyone clean and efficient construction techniques, as well as expanding everyone\'s composites manufacturing experience. We had to make a custom motor tube for our test launch as well as custom boat tails.',
+             'Olympus was the competition rocket for the 2024-2025 season at the International Rocketry Engineering Competition. As the Flight Hardware Lead at the time, I was responsible for the construction of the rocket. Throughout my time as lead I devoted my time to teaching everyone clean and efficient construction techniques, as well as expanding everyone\'s composites manufacturing experience. We had to make a custom motor tube for our test launch as well as custom boat tails. Sadly during competition, the unforseen had happened and our rocket folded over itself mid flight. After analyzing footage we came to a consensus that either the rocket was too weak to handle our selected motor or it was not built correctly. I\'d like to believe my construction skills were good enough but I made sure to strengthen every part of the next year\'s rocket aurora.',
              'images/OlympusThumb.jpg',
-             ['images/OlympusOR.png', 'images/OlympusBare.jpg', 'images/OlympusPretty.JPG', 'images/OlympusVid.mp4'],
+             ['images/OlympusOR.png', 'images/OlympusBare.jpg', 'images/OlympusPretty.JPG', 'yt:https://www.youtube.com/live/3G0n4SnmLRg?si=wmE9GyHqOpu9J_fI&t=5203'],
              'Fall 2024 – Summer 2025',
              'OpenRocket, Workshop Tools, Composites',
              ['Rocketry', 'Composites']
@@ -562,35 +583,64 @@
         </div>
       </div>
 
-            <!-- PROJECT 2: Olympus -->
+      <!-- BATTLEBOT -->
       <div class="card"
            data-category="mechanical"
            onclick="openProject(
-             'Spring 2025: Lightweight Battlebot',
-             'As part of my engineering desgin class I was placed in a team and we had to design a mini battlebot. We were given a few constraints, namely a one pound max weight restriction, as well as having to include every part given to us in the design. We were give a big motor, two smaller motors, a servo, a small robotics kit, and access to 3d printing, acrylic plates, and plywood. After some research my team went with a square body design with a spinning drum as the main weapon. To make the weapon we decided to insert the big motor into the drum piece and having it spin itself on a bearing heat inserted in the 3d printed frame. As the lead for the wheels I made the frame to hold the motors in place as well as making a custom gear train between the motor and wheels. This helped it get some extra speed and overall manueverability. The flipper in the back had to be shaved down in size quite a bit to save weight so it didnt end up doing much. When it came time to compete we were outpacing our competitors battlebots due to our different gear ratios on the wheels. The drum was also very good albeit not for its designed purpose. Since it was so heavy it was great at taking hits from the opponents weapons and pinning the competitors on the arena and taking them out through submission. We were able to progress to the semifinals until one of our gears in the drivetrain came loose and we couldnt move our bot around.',
+             'Lightweight Battlebot',
+             'As part of my engineering design class I was placed in a team and we had to design a mini battlebot. We were given a few constraints — a one pound max weight restriction, and we had to incorporate every part given to us: a large motor, two smaller motors, a servo, a small robotics kit, with access to 3D printing, acrylic plates, and plywood.\n\nAfter some research my team went with a square body design with a spinning drum as the main weapon. To make the weapon we inserted the large motor directly into the drum and had it spin on a bearing heat-pressed into the 3D printed frame. As lead for the drivetrain, I designed the frame to hold the motors and built a custom gear train between the motor and wheels, giving us extra speed and maneuverability.\n\nWhen it came time to compete, we were outpacing other bots thanks to our gear ratios. The drum was also very effective — not always for its intended purpose, but its weight made it great at absorbing hits and pinning opponents for submission wins. We reached the semifinals before a gear in the drivetrain came loose and left us unable to move.',
              'images/BattleBot1.png',
              ['images/BattleBot2.png', 'images/BBinternal.png', 'images/BattleBot1.png', 'images/BBVid.mp4'],
              'Spring 2025',
-             'SolidWorks, FEA, Electronics, Anything else?',
-             ['PUT WHAT YOU THINK WOULD WORK HERE CLAUDE']
+             'SolidWorks, 3D Printing, Mechanical Design, Gear Train Design',
+             ['Mechanical', 'Design', 'Manufacturing']
            )">
         <div class="card-thumb-wrap">
           <img class="card-thumb" src="images/BattleBot1.png" alt="BattleBot">
         </div>
         <div class="card-body">
           <div class="card-meta">
-            <div class="card-title">Spring 2025: Lightweight Battlebot</div>
+            <div class="card-title">Lightweight Battlebot</div>
             <div class="card-year">2025</div>
           </div>
-          <div class="card-desc">A small ant weight battlebot.</div>
+          <div class="card-desc">A 1 lb antweight battlebot with a spinning drum weapon and custom gear drivetrain.</div>
           <div class="card-tags">
             <span class="tag">Mechanical</span>
+            <span class="tag">Design</span>
+            <span class="tag">Manufacturing</span>
           </div>
         </div>
       </div>
 
-      
-      <!-- PROJECT 1: Viper -->
+      <!-- WIND TUNNEL -->
+      <div class="card"
+           data-category="mechanical"
+           onclick="openProject(
+             'Wind Tunnel Testing: Lightning McQueen',
+             'For my Incompressible Fluids class, my team analyzed Lightning McQueen to see if his aerodynamic design could be improved to give him an edge against his competition. After finding a model online and modifying it to fit the wind tunnel harnesses, we measured force values at the highest speed settings to simulate racing conditions.\n\nThrough our analysis we found that he had considerable induced drag from his large cross-sectional area. We then applied vortex generators to his frame to see if they could prevent boundary layer separation. It turns out they helped somewhat — but at the speeds he races, it\'s nowhere near enough to overcome Jackson Storm.',
+             'images/LWthumb.png',
+             ['LS1.jpg', 'LS2.jpg','slides:https://docs.google.com/presentation/d/e/2PACX-1vS3SCGuCcJbLrPnORBI4uGHLe2iE5dHowGZyayA8a7IU2xTX6MPhVZzcCGCoJWT7thcvJI-Dy-50b5S/pubembed?start=false&loop=false&delayms=60000'],
+             'Spring 2025',
+             'Wind Tunnel Testing, Aerodynamic Analysis, Vortex Generators',
+             ['Mechanical', 'Aerodynamics']
+           )">
+        <div class="card-thumb-wrap">
+          <img class="card-thumb" src="images/LWthumb.png" alt="Wind Tunnel Testing">
+        </div>
+        <div class="card-body">
+          <div class="card-meta">
+            <div class="card-title">Wind Tunnel: Lightning McQueen</div>
+            <div class="card-year">2025</div>
+          </div>
+          <div class="card-desc">Aerodynamic analysis and vortex generator testing on a scale model.</div>
+          <div class="card-tags">
+            <span class="tag">Mechanical</span>
+            <span class="tag">Aerodynamics</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIPER -->
       <div class="card"
            data-category="rocketry"
            onclick="openProject(
@@ -617,17 +667,12 @@
           </div>
         </div>
       </div>
- 
- 
 
       <!-- ─────────────────────────────────────────
-           COMING SOON — add these when ready:
+           COMING SOON:
            - Drone Simulator / Estimator  → software
-           - SAR Radar                    → software or mechanical
            - Controls projects            → software
-           - Battle Bot                   → mechanical
            - Instrumentation Experiments  → mechanical
-           - Speed Tunnel Testing         → mechanical
       ───────────────────────────────────────── -->
 
     </div>
@@ -656,7 +701,6 @@
   </div>
 
   <script>
-    // ── Project Page ──
     function openProject(title, desc, thumb, media, year, tools, tags) {
       document.getElementById('pp-title').textContent = title;
       document.getElementById('pp-desc').textContent = desc;
@@ -668,8 +712,39 @@
 
       const mediaEl = document.getElementById('pp-media');
       mediaEl.innerHTML = '';
+
       media.forEach(src => {
-        if (!src) return; // skip empty strings
+        if (!src) return;
+
+       // Google Slides embed — prefix with "slides:"
+if (src.startsWith('slides:')) {
+  const url = src.slice(7);
+  const wrap = document.createElement('div');
+  wrap.className = 'pp-slides-wrap';
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.allowFullscreen = true;
+  wrap.appendChild(iframe);
+  mediaEl.appendChild(wrap);
+  return;
+}
+
+// YouTube embed — prefix with "yt:"
+if (src.startsWith('yt:')) {
+  const url = new URL(src.slice(3));
+  const videoId = url.searchParams.get('v') || url.pathname.split('/').pop();
+  const start = url.searchParams.get('t') || '0';
+  const wrap = document.createElement('div');
+  wrap.className = 'pp-slides-wrap';
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube.com/embed/${videoId}?start=${start}`;
+  iframe.allowFullscreen = true;
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  wrap.appendChild(iframe);
+  mediaEl.appendChild(wrap);
+  return;
+}
+
         const isVideo = src.match(/\.(mp4|webm|mov)$/i);
         const el = document.createElement(isVideo ? 'video' : 'img');
         el.src = src;
@@ -691,7 +766,6 @@
 
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
 
-    // ── Filter buttons ──
     document.querySelectorAll('.filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
